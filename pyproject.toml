@@ -1,0 +1,26 @@
+[project]
+name = "motionmap"
+version = "2.0.1"
+description = "Transform real-time body movements into keyboard actions"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "mediapipe==0.10.21",
+    "numpy==1.26.4",
+    # mediapipe already depends on opencv-contrib-python (provides cv2);
+    # installing opencv-python too would clash and requires numpy>=2 in 5.x
+    "opencv-contrib-python==4.11.0.86",
+    "pynput==1.8.2",
+    "PySide6==6.12.0",
+]
+
+[dependency-groups]
+build = [
+    "nuitka==4.3.4",
+    "pyinstaller==6.22.3",
+]
+
+[tool.uv]
+# This is an application, not an installable package
+package = false
+default-groups = ["build"]

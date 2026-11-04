@@ -9,8 +9,10 @@ from src.config import window_icon_path
 
 if __name__ == "__main__":
     # Set the appid so the icon is shown in the taskbar
-    appid = "company.product.subproduct.version"  # arbitrary string
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)
+    # (Windows-only API; on other platforms the window icon is enough)
+    if sys.platform == "win32":
+        appid = "company.product.subproduct.version"  # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)
 
     app = QApplication([])
 
